@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import "./App.css";
-// import Header from "./components/Header";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import ProductListing from "./pages/ProductListing";
 import Footer from "./components/Footer";
@@ -76,7 +76,7 @@ function App() {
     <>
       <BrowserRouter>
         <MyContext.Provider value={values}>
-          {/* <Header /> */}
+          <Header />
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route
