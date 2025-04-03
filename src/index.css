@@ -1,0 +1,474 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 25vh;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #287c2c;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkgreen;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+}
+
+.myOrderTable::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.myOrderTable::-webkit-scrollbar-thumb {
+  background-color: #ccc !important;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+body {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  background: white;
+  color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+}
+
+.btn-org {
+  background: #287c2c !important;
+  color: white !important;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 7px 20px !important;
+}
+
+.btn-lg {
+  font-size: 18px !important;
+  padding: 10px 20px !important;
+}
+
+.btn-sm {
+  font-size: 12px !important;
+  padding: 5px 20px !important;
+}
+
+.btn-org:hover {
+  background-color: #171717 !important;
+}
+
+.btn-org.btn-border {
+  background: none !important;
+  color: #287c2c !important;
+  border: 1px solid #287c2c;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 7px 20px !important;
+}
+
+.btn-org.btn-border:hover {
+  background-color: #171717 !important;
+  color: white !important;
+  border: 1px solid #171717;
+}
+
+.link:hover {
+  color: #287c2c;
+}
+
+.MuiBadge-badge {
+  background-color: #287c2c !important;
+}
+
+nav button {
+  text-transform: capitalize !important;
+  color: black !important;
+}
+
+nav button:hover {
+  text-transform: capitalize !important;
+  color: #287c2c !important;
+  background: none;
+}
+
+.mySwiper {
+  overflow: inherit !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: #fff;
+  box-shadow:
+    0 1px 3px #0000001f,
+    0 1px 2px #0000003d !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #287c2c !important;
+}
+
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover:after {
+  color: #fff !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 22px !important;
+  color: #000;
+}
+
+.mySwiper .swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+  left: 0px !important;
+}
+
+.mySwiper .swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  right: 0px !important;
+}
+
+.mySwiper .swiper-button-prev,
+.mySwiper .swiper-button-next {
+  border-radius: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  display: flex !important;
+  top: 90px !important;
+  height: 100px !important;
+  font-size: 10px !important;
+}
+
+.mySwiper .img {
+  border-radius: 0px !important;
+}
+
+.homeCategorySlider {
+  overflow: inherit !important;
+}
+
+.homeCategorySlider .swiper-button-prev,
+.homeCategorySlider .swiper-button-next {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.homeCategorySlider .swiper-button-prev::after,
+.homeCategorySlider .swiper-button-next::after {
+  font-size: 16px !important;
+}
+
+.homeCategorySlider .item {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.homeCategorySlider .swiper-button-prev:hover::after,
+.homeCategorySlider .swiper-button-next:hover::after {
+  color: #fff !important;
+}
+
+.smallButton .swiper-button-prev,
+.smallButton .swiper-button-next {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  top: 55% !important;
+}
+
+.smallButton .swiper-button-prev::after,
+.smallButton .swiper-button-next::after {
+  font-size: 18px !important;
+  color: #000;
+}
+
+.MuiTabs-indicator {
+  background-color: #287c2c !important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected {
+  color: #287c2c !important;
+}
+
+.productSlider .swiper-wrapper {
+  padding: 15px;
+}
+
+.productItemSlider .swiper-button-prev,
+.productItemSlider .swiper-button-next {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  top: 40% !important;
+}
+
+.productItemSlider .swiper-button-prev::after,
+.productItemSlider .swiper-button-next::after {
+  font-size: 18px !important;
+  color: #000;
+}
+
+footer form input::placeholder {
+  font-size: 14px;
+}
+
+.css-imrjgg-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
+.css-imrjgg-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+  color: #287c2c !important;
+}
+
+.MuiFormControlLabel-label {
+  font-size: 13px !important;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.blogItem .swiper-button-prev,
+.blogItem .swiper-button-next {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  top: 35% !important;
+}
+
+.blogItem .swiper-button-prev::after,
+.blogItem .swiper-button-next::after {
+  font-size: 18px !important;
+  color: #000;
+}
+
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  background: #287c2c !important;
+}
+
+.homeSliderv2 .swiper-button-prev,
+.homeSliderv2 .swiper-button-next {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  top: 50% !important;
+}
+
+.homeSliderv2 .swiper-button-prev::after,
+.homeSliderv2 .swiper-button-next::after {
+  font-size: 25px !important;
+  color: #000;
+}
+
+.homeSliderv2 .swiper-slide-active .info {
+  right: 0px !important;
+  opacity: 1;
+}
+
+.homeSliderv2 .swiper-slide-active .info h4 {
+  right: 0px !important;
+  opacity: 1;
+}
+
+.homeSliderv2 .swiper-slide-active .info h3 {
+  right: 0px !important;
+  opacity: 1;
+}
+
+.homeSliderv2 .swiper-slide-active .info h2 {
+  right: 0px !important;
+  opacity: 1;
+}
+
+.homeSliderv2 .swiper-slide-active .info .v2btn {
+  right: 0px !important;
+  opacity: 1;
+}
+
+.homeSliderv2 .info h4 {
+  transition-duration: 1.2s;
+}
+
+.homeSliderv2 .info h2 {
+  transition-duration: 1.5s;
+}
+
+.homeSliderv2 .info h3 {
+  transition-duration: 1.8s;
+}
+
+.homeSliderv2 .info .v2btn {
+  transition-duration: 2.1s;
+}
+
+.MuiCheckbox-root {
+  padding: 6px !important;
+}
+
+.ReactCollapse--collapse {
+  transition: height 400ms;
+}
+
+.range-slider {
+  height: 3px !important;
+}
+
+.range-slider .range-slider__thumb {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.range-slider .range-slider__thumb,
+.range-slider .range-slider__range {
+  background: #287c2c !important;
+}
+
+.itemViewActions button.active svg {
+  color: #287c2c !important;
+  opacity: 1 !important;
+}
+
+.Mui-selected.MuiPaginationItem-page {
+  background: #287c2c !important;
+  color: #fff !important;
+}
+
+.iiz__hint {
+  display: none !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-next {
+  bottom: 0px !important;
+  right: inherit !important;
+  top: inherit !important;
+  width: 100% !important;
+  height: 30px !important;
+  border-radius: 0px !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-prev {
+  left: 0px !important;
+  top: 20px !important;
+  width: 100% !important;
+  height: 30px !important;
+  border-radius: 0px !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-next::after,
+.zoomProductSliderThumbs .swiper-button-prev::after {
+  transform: rotate(90deg);
+}
+
+.zoomProductSliderThumbs .swiper-wrapper {
+  padding-top: 38px !important;
+  padding-bottom: 50px !important;
+}
+
+.productContent .actions button {
+  min-width: 40px !important;
+  border: 1px solid black !important;
+  color: #171717;
+  height: 30px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.reviewScroll::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+.reviewScroll::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+}
+
+form::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+form::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+}
+
+.cartPanel .MuiPaper-root {
+  width: 400px !important;
+}
+
+.size-menu .MuiButtonBase-root {
+  font-size: 12px !important;
+}
+
+.otpBox input {
+  border: 1px solid black !important;
+  outline: none !important;
+  border-radius: 4px;
+}
+
+.otpBox input:focus {
+  border: 1px solid black !important;
+}
+
+#account-menu .MuiPaper-root {
+  width: 200px !important;
+}
+
+.myAccountTabs li a {
+  position: relative;
+  display: block;
+}
+
+.myAccountTabs li a::before {
+  content: "";
+  width: 4px;
+  height: 50%;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  background: #287c2c;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.myAccountTabs li a.active::before {
+  height: 100%;
+  opacity: 1;
+  top: 0px;
+}
+
+.myAccountTabs li a.active button svg {
+  color: #287c2c !important;
+  opacity: 1 !important;
+}

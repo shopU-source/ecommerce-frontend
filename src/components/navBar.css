@@ -1,0 +1,27 @@
+.nav li:hover .submenu {
+  visibility: visible;
+  opacity: 1 !important;
+  z-index: 1000;
+}
+
+.nav li .submenu {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.nav li:hover .submenu {
+  visibility: visible;
+  opacity: 1 !important;
+}
+
+.nav li .submenu:hover {
+  visibility: visible;
+  opacity: 1 !important;
+}
+
+.nav li .submenu li:hover button {
+  color: #287c2c !important;
+}
