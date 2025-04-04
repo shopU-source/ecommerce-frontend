@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -28,6 +28,7 @@ import Checkout from "./pages/Checkout";
 import MyAccount from "./pages/MyAccount";
 import MyList from "./pages/MyList";
 import MyOrders from "./pages/MyOrders";
+import { fetchDataFromApi } from "./utils/api";
 
 const MyContext = createContext();
 
@@ -42,6 +43,7 @@ function App() {
   const [maxWidth] = useState("xl");
   const [fullWidth] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
+  const [userData, setUserData] = useState(null)
 
   const toggleCartPanel = (newOpen) => () => {
     setOpenCartPanel(newOpen);
@@ -60,6 +62,20 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token !== undefined && token !== null && token !== "") {
+      fetchDataFromApi(`/api/user/userDetails?accessToken=${token}`).then((res) => {
+        console.log(res)
+        setUserData(res.user)
+        setIsLogin(true)
+      })
+    }
+    else {
+      setIsLogin(false)
+    }
+  }, [])
+
   const values = {
     setOpenProductDetailsModal,
     setOpenCartPanel,
@@ -70,6 +86,8 @@ function App() {
     setIsLogin,
     loading,
     setLoading,
+    setUserData,
+    userData
   };
 
   return (
@@ -160,7 +178,7 @@ function App() {
                 color: "#ffffff", // White text
                 padding: "16px",
                 borderRadius: "8px",
-                width: "300px",
+                width: "1000px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -177,7 +195,7 @@ function App() {
                 color: "#ffffff", // White text
                 padding: "16px",
                 borderRadius: "8px",
-                width: "300px",
+                width: "1000px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

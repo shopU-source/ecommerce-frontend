@@ -17,6 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
+import { fetchDataFromApi } from "../utils/api";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -37,6 +38,22 @@ function Header() {
     setAnchorEl(null);
   };
   const context = useContext(MyContext);
+
+  function logout() {
+    setAnchorEl(null);
+    fetchDataFromApi(
+      `/api/user/logout?accessToken=${localStorage.getItem("accessToken")}`,
+      { withCredentials: true }
+    ).then((res) => {
+      console.log(res);
+      if (res?.error === false) {
+        context.setIsLogin(false);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userEmail");
+      }
+    });
+  }
 
   return (
     <header className="bg-white">
@@ -116,10 +133,10 @@ function Header() {
                     </Button>
                     <div className="info flex flex-col">
                       <h4 className="text-[14px] font-[500] mb-0 capitalize text-left justify-start text-black leading-3">
-                        Ayush Kumar
+                        {context?.userData?.name}
                       </h4>
                       <span className="text-[13px] lowercase text-left justify-start font-[400] text-black">
-                        ayushkumar9315983@gmail.com
+                        {context?.userData?.email}
                       </span>
                     </div>
                   </Button>
@@ -187,11 +204,8 @@ function Header() {
                         <span className="text-[15px]">My List</span>
                       </MenuItem>
                     </Link>
-                    <Link to={"/logout"} className="link">
-                      <MenuItem
-                        onClick={handleClose}
-                        className="flex gap-4 !py-2"
-                      >
+                    <Link className="link">
+                      <MenuItem onClick={logout} className="flex gap-4 !py-2">
                         <LuLogOut className="text-[18px]" />{" "}
                         <span className="text-[15px]">Logout</span>
                       </MenuItem>
