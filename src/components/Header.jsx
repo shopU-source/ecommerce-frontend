@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Search from "./SearchBar";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
@@ -30,6 +30,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -51,6 +52,7 @@ function Header() {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("userEmail");
+        navigate("/");
       }
     });
   }
@@ -95,7 +97,7 @@ function Header() {
           <div className="col1 w-[25%]">
             <Link to={"/"}>
               <img
-                className="h-[80px] w-[170px]"
+                className="h-[100px] w-[100px] rounded-full"
                 src={"/logoHeader.png"}
                 alt="Image"
               />
@@ -133,10 +135,10 @@ function Header() {
                     </Button>
                     <div className="info flex flex-col">
                       <h4 className="text-[14px] font-[500] mb-0 capitalize text-left justify-start text-black leading-3">
-                        {context?.userData?.name}
+                        {context.userData?.name}
                       </h4>
                       <span className="text-[13px] lowercase text-left justify-start font-[400] text-black">
-                        {context?.userData?.email}
+                        {context.userData?.email}
                       </span>
                     </div>
                   </Button>

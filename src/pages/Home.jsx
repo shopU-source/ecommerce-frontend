@@ -27,7 +27,7 @@ function Home() {
   };
 
   return (
-    <div className="bg-white">
+    <div>
       <HomeSlider />
       <HomeCategorySlider />
       <section className="py-6">

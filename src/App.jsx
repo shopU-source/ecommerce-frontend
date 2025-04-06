@@ -65,16 +65,17 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token !== undefined && token !== null && token !== "") {
-      fetchDataFromApi(`/api/user/userDetails?accessToken=${token}`).then((res) => {
+      fetchDataFromApi(`/api/user/userDetails`).then((res) => {
         console.log(res)
-        setUserData(res.user)
+        console.log(res?.message)
         setIsLogin(true)
+        setUserData(res.user)
       })
     }
     else {
       setIsLogin(false)
     }
-  }, [])
+  }, [isLogin])
 
   const values = {
     setOpenProductDetailsModal,
@@ -174,7 +175,7 @@ function App() {
           toastOptions={{
             success: {
               style: {
-                background: "#287c2c", // Green background for success
+                background: "#2c8790", // Green background for success
                 color: "#ffffff", // White text
                 padding: "16px",
                 borderRadius: "8px",
@@ -186,12 +187,12 @@ function App() {
               },
               iconTheme: {
                 primary: "#ffffff", // White icon
-                secondary: "#287c2c", // Green background for icon
+                secondary: "#2c8790", // Green background for icon
               },
             },
             error: {
               style: {
-                background: "#ef4444", // Red background for error
+                background: "#e84344", // Red background for error
                 color: "#ffffff", // White text
                 padding: "16px",
                 borderRadius: "8px",
@@ -203,7 +204,7 @@ function App() {
               },
               iconTheme: {
                 primary: "#ffffff", // White icon
-                secondary: "#ef4444", // Red background for icon
+                secondary: "#e84344", // Red background for icon
               },
             },
           }}

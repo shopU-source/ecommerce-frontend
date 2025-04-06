@@ -13,7 +13,7 @@ function ProductItem() {
 
   return (
     <div className="group">
-      <div className="productItem rounded-md overflow-hidden border-2 border-[#e4f0d4] shadow-lg group-hover:scale-105 transition-all duration-500">
+      <div className="productItem rounded-md overflow-hidden border-2 border-[#dee9e8] shadow-lg group-hover:scale-105 transition-all duration-500">
         <div className="imageWrapper w-[100%] rounded-md relative group">
           <Link to={"/productDetails/565656"}>
             <div className="img h-[225px] relative overflow-hidden">
@@ -28,7 +28,7 @@ function ProductItem() {
               />
             </div>
           </Link>
-          <span className="discount flex items-center absolute top-[10px] left-[10px] z-50 bg-primary text-white rounded-md p-2 text-[12px] font-[500]">
+          <span className="discount flex items-center absolute top-[10px] left-[10px] z-50 bg-primary text-primary rounded-md p-2 text-[12px] font-[500]">
             15% off
           </span>
           <div className="actions absolute right-[-200px] top-[2px] z-50 flex items-center gap-2 flex-col w-[80px] transition-all duration-300 group-hover:right-[0px] group-hover:top-[15px] opacity-0 group-hover:opacity-100">

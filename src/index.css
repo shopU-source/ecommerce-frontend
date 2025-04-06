@@ -27,12 +27,12 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #287c2c;
+  background: #2c8790;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: darkgreen;
+  background: #2c8790;
 }
 
 .scroll::-webkit-scrollbar {
@@ -65,7 +65,7 @@ body {
 }
 
 .btn-org {
-  background: #287c2c !important;
+  background: #2c8790 !important;
   color: white !important;
   font-weight: 500;
   font-size: 16px;
@@ -88,8 +88,8 @@ body {
 
 .btn-org.btn-border {
   background: none !important;
-  color: #287c2c !important;
-  border: 1px solid #287c2c;
+  color: #2c8790 !important;
+  border: 1px solid #2c8790;
   font-weight: 500;
   font-size: 16px;
   padding: 7px 20px !important;
@@ -102,11 +102,11 @@ body {
 }
 
 .link:hover {
-  color: #287c2c;
+  color: #2c8790;
 }
 
 .MuiBadge-badge {
-  background-color: #287c2c !important;
+  background-color: #2c8790 !important;
 }
 
 nav button {
@@ -116,7 +116,7 @@ nav button {
 
 nav button:hover {
   text-transform: capitalize !important;
-  color: #287c2c !important;
+  color: #2c8790 !important;
   background: none;
 }
 
@@ -138,7 +138,7 @@ nav button:hover {
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background-color: #287c2c !important;
+  background-color: #2c8790 !important;
 }
 
 .swiper-button-prev:hover::after,
@@ -217,11 +217,11 @@ nav button:hover {
 }
 
 .MuiTabs-indicator {
-  background-color: #287c2c !important;
+  background-color: #2c8790 !important;
 }
 
 .MuiTab-textColorPrimary.Mui-selected {
-  color: #287c2c !important;
+  color: #2c8790 !important;
 }
 
 .productSlider .swiper-wrapper {
@@ -248,7 +248,7 @@ footer form input::placeholder {
 
 .css-imrjgg-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
 .css-imrjgg-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
-  color: #287c2c !important;
+  color: #2c8790 !important;
 }
 
 .MuiFormControlLabel-label {
@@ -272,7 +272,7 @@ footer form input::placeholder {
 
 .swiper-pagination-bullet,
 .swiper-pagination-bullet-active {
-  background: #287c2c !important;
+  background: #2c8790 !important;
 }
 
 .homeSliderv2 .swiper-button-prev,
@@ -349,16 +349,16 @@ footer form input::placeholder {
 
 .range-slider .range-slider__thumb,
 .range-slider .range-slider__range {
-  background: #287c2c !important;
+  background: #2c8790 !important;
 }
 
 .itemViewActions button.active svg {
-  color: #287c2c !important;
+  color: #2c8790 !important;
   opacity: 1 !important;
 }
 
 .Mui-selected.MuiPaginationItem-page {
-  background: #287c2c !important;
+  background: #2c8790 !important;
   color: #fff !important;
 }
 
@@ -457,7 +457,7 @@ form::-webkit-scrollbar-thumb {
   position: absolute;
   top: 50px;
   left: 0px;
-  background: #287c2c;
+  background: #2c8790;
   transition: all 0.3s ease-in-out;
   opacity: 0;
 }
@@ -469,6 +469,6 @@ form::-webkit-scrollbar-thumb {
 }
 
 .myAccountTabs li a.active button svg {
-  color: #287c2c !important;
+  color: #2c8790 !important;
   opacity: 1 !important;
 }

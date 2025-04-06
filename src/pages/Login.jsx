@@ -78,8 +78,9 @@ function Login() {
           localStorage.setItem("accessToken", res?.data?.accessToken);
           localStorage.setItem("refreshToken", res?.data?.refreshToken);
           context.openAlertBox("success", res.message);
-          navigate("/");
+          context.setUserData(res.user)
           context.setIsLogin(true);
+          navigate("/");
         }
       }
     );
