@@ -97,7 +97,7 @@ function Header() {
           <div className="col1 w-[25%]">
             <Link to={"/"}>
               <img
-                className="h-[100px] w-[100px] rounded-full"
+                className="h-[50px] w-[120px]"
                 src={"/logoHeader.png"}
                 alt="Image"
               />
