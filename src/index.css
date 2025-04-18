@@ -83,7 +83,8 @@ body {
 }
 
 .btn-org:hover {
-  background-color: #171717 !important;
+  background-color: #e2edee !important;
+  color: #3e5259 !important;
 }
 
 .btn-org.btn-border {
@@ -471,4 +472,9 @@ form::-webkit-scrollbar-thumb {
 .myAccountTabs li a.active button svg {
   color: #2c8790 !important;
   opacity: 1 !important;
+}
+
+.MuiDialog-paper {
+  width: 1000px !important;
+  max-width: 1000px !important;
 }

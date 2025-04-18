@@ -65,6 +65,7 @@ function ForgotPassword() {
       }
       else {
         context.openAlertBox("error", res?.message)
+        context.setLoading(false)
       }
     });
   }
@@ -98,8 +99,7 @@ function ForgotPassword() {
                 name="newPassword"
                 onChange={onChangeInput}
               />
-            </div>
-            <Button
+              <Button
               className="!absolute top-[10px] right-[10px] z-50 !h-[35px] !w-[35px] !min-w-[35px] !rounded-full mt-4"
               onClick={() => setIsShowPassword(!isShowPassword)}
             >
@@ -109,6 +109,8 @@ function ForgotPassword() {
                 <IoMdEyeOff className="!text-black text-[20px] !opacity-75" />
               )}
             </Button>
+            </div>
+            
             <div className="form-group w-full mb-5 relative">
               <TextField
                 id="outlined-basic"

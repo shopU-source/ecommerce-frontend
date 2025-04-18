@@ -4,7 +4,7 @@ export async function postData(url, formData) {
   const response = await fetch(import.meta.env.VITE_APP_URL + url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
@@ -63,4 +63,16 @@ export async function editData(url, updatedData) {
     });
 
   return response;
+}
+
+export async function deleteData(url) {
+  const params = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      "Content-Type": "application/json"
+    }
+  }
+
+  const { res } = await axios.delete(import.meta.env.VITE_APP_URL + url, params)
+  return res;
 }

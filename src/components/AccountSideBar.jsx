@@ -4,15 +4,19 @@ import { FaRegHeart, FaRegUserCircle } from "react-icons/fa";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineCloudUpload } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../App";
 import LoadingCircle from "./LoadingCircle";
-import { uploadImage } from "../utils/api";
+import { fetchDataFromApi, uploadImage } from "../utils/api";
+import { LuMapPinHouse } from "react-icons/lu";
+
 
 function AccountSideBar() {
   const context = useContext(MyContext);
+  const navigate = useNavigate()
   const [previews, setPreviews] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
     const userAvatar = [];
@@ -28,6 +32,23 @@ function AccountSideBar() {
   let selectedImage = [];
 
   const formdata = new FormData();
+
+  function logout() {
+      setAnchorEl(null);
+      fetchDataFromApi(
+        `/api/user/logout?accessToken=${localStorage.getItem("accessToken")}`,
+        { withCredentials: true }
+      ).then((res) => {
+        console.log(res);
+        if (res?.error === false) {
+          context.setIsLogin(false);
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("userEmail");
+          navigate("/");
+        }
+      });
+    }
 
   async function onChangeFile(e, apiEndPoint) {
     try {
@@ -110,6 +131,14 @@ function AccountSideBar() {
             </NavLink>
           </li>
           <li className="w-full">
+            <NavLink to={"/myAddress"} exact={true} activeClassName="isActive">
+              <Button className="flex items-center !py-2 !px-5 !text-left !gap-4 w-full !justify-start !text-black !rounded-none !capitalize">
+                <LuMapPinHouse className="text-[18px]" />
+                Address
+              </Button>
+            </NavLink>
+          </li>
+          <li className="w-full">
             <NavLink to={"/myList"} exact={true} activeClassName="isActive">
               <Button className="flex items-center !py-2 !px-5 !text-left !gap-4 w-full !justify-start !text-black !rounded-none !capitalize">
                 <FaRegHeart className="text-[18px]" />
@@ -127,7 +156,7 @@ function AccountSideBar() {
           </li>
           <li className="w-full">
             <NavLink to={"/logout"} exact={true} activeClassName="isActive">
-              <Button className="flex items-center !py-2 !px-5 !text-left !gap-4 w-full !justify-start !text-black !rounded-none !capitalize">
+              <Button className="flex items-center !py-2 !px-5 !text-left !gap-4 w-full !justify-start !text-black !rounded-none !capitalize" onClick={logout}>
                 <LuLogOut className="text-[18px]" />
                 Logout
               </Button>

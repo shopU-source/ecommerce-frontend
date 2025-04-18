@@ -7,7 +7,7 @@ export default {
         primary: "#2c8790",
       },
       backgroundColor: {
-        primary: "#dee9e8",
+        primary: "#e2edee",
       },
     },
   },

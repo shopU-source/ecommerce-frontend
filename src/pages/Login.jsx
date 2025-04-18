@@ -65,6 +65,7 @@ function Login() {
     }
     postData("/api/user/login", formFields, { withCredentials: true }).then(
       (res) => {
+        console.log(res)
         context.setLoading(false);
         setFormFields({
           email: "",
@@ -72,6 +73,9 @@ function Login() {
         });
         if (res.error === true) {
           context.openAlertBox("error", res.message);
+          context.setLoading(false)
+          localStorage.setItem("userEmail", formFields.email)
+          navigate("/verify")
         } else {
           console.log(res);
           localStorage.setItem("userEmail", formFields.email);

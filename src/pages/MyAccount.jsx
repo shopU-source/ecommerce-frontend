@@ -23,7 +23,6 @@ function MyAccount() {
   });
 
   const [changePassword, setChangePassword] = useState({
-    oldPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
@@ -61,7 +60,7 @@ function MyAccount() {
       });
 
       setChangePassword({
-        email: context?.userData?.email
+        email: context?.userData?.email,
       });
     }
   }, [context?.userData]);
@@ -70,7 +69,9 @@ function MyAccount() {
   console.log(context?.userData?.email);
 
   const validateValue = Object.values(formFields).every((element) => element);
-  const validateValue2 = Object.values(formFields).every((element) => element);
+  const validateValue2 = Object.values(changePassword).every(
+    (element) => element
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -106,9 +107,6 @@ function MyAccount() {
     e.preventDefault();
     setLoading2(true);
 
-    if (changePassword.oldPassword === "") {
-      context.openAlertBox("error", "Please enter the old password");
-    }
     if (changePassword.newPassword === "") {
       context.openAlertBox("error", "Please enter new password");
     }
@@ -125,12 +123,12 @@ function MyAccount() {
     postData(`/api/user/resetPassword`, changePassword, {
       withCredentials: true,
     }).then((res) => {
-      console.log(res)
+      console.log(res);
       if (res?.error !== true) {
         setLoading2(false);
         context.openAlertBox("success", res?.message);
       } else {
-        setLoading2(false)
+        setLoading2(false);
         context.openAlertBox("error", res?.message);
       }
     });
@@ -146,7 +144,14 @@ function MyAccount() {
           <div className="card bg-white p-5 shadow-md rounded-md mb-5">
             <div className="flex items-center pb-3">
               <h2 className="pb-0">My Profile</h2>
-              <Button className="!ml-auto !text-primary" onClick={() => setIsChangePasswordFormShow(!isChangePasswordFormShow)}>Change Password</Button>
+              <Button
+                className="!ml-auto !text-primary"
+                onClick={() =>
+                  setIsChangePasswordFormShow(!isChangePasswordFormShow)
+                }
+              >
+                Change Password
+              </Button>
             </div>
             <hr />
             <form className="mt-8" onSubmit={handleSubmit}>
@@ -216,44 +221,34 @@ function MyAccount() {
               </div>
               <hr />
               <form className="mt-8" onSubmit={handleSubmitChangePassword}>
-                <div className="flex items-center gap-5">
-                  <div className="w-[50%]">
-                    <TextField
-                      label="Old Password"
-                      variant="outlined"
-                      size="small"
-                      className="w-full"
-                      type="text"
-                      name="oldPassword"
-                      value={changePassword.oldPassword}
-                      onChange={onChangeInput}
-                    />
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-5">
+                    <div className="w-full">
+                      <TextField
+                        label="New Password"
+                        variant="outlined"
+                        size="small"
+                        className="w-full"
+                        type="text"
+                        name="newPassword"
+                        value={changePassword.newPassword}
+                        onChange={onChangeInput}
+                      />
+                    </div>
                   </div>
-                  <div className="w-[50%]">
-                    <TextField
-                      label="New Password"
-                      variant="outlined"
-                      size="small"
-                      className="w-full"
-                      type="text"
-                      name="newPassword"
-                      value={changePassword.newPassword}
-                      onChange={onChangeInput}
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center gap-5 mt-4">
-                  <div className="w-[50%]">
-                    <TextField
-                      label="Confirm Password"
-                      variant="outlined"
-                      size="small"
-                      className="w-full"
-                      type="text"
-                      name="confirmPassword"
-                      value={changePassword.confirmPassword}
-                      onChange={onChangeInput}
-                    />
+                  <div className="flex items-center gap-5">
+                    <div className="w-full">
+                      <TextField
+                        label="Confirm Password"
+                        variant="outlined"
+                        size="small"
+                        className="w-full"
+                        type="text"
+                        name="confirmPassword"
+                        value={changePassword.confirmPassword}
+                        onChange={onChangeInput}
+                      />
+                    </div>
                   </div>
                 </div>
                 <br />

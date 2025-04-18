@@ -29,6 +29,7 @@ import MyAccount from "./pages/MyAccount";
 import MyList from "./pages/MyList";
 import MyOrders from "./pages/MyOrders";
 import { fetchDataFromApi } from "./utils/api";
+import Address from "./pages/address";
 
 const MyContext = createContext();
 
@@ -67,7 +68,13 @@ function App() {
     if (token !== undefined && token !== null && token !== "") {
       fetchDataFromApi(`/api/user/userDetails`).then((res) => {
         console.log(res)
-        console.log(res?.message)
+        if (res?.message === "You have not login") {
+          localStorage.removeItem("accessToken")
+          localStorage.removeItem("refreshToken")
+          openAlertBox("error", "Your session is closed, please login")
+          window.location.href = "/login"
+          setIsLogin(false)
+        }
         setIsLogin(true)
         setUserData(res.user)
       })
@@ -121,6 +128,7 @@ function App() {
             <Route path={"/myAccount"} exact={true} element={<MyAccount />} />
             <Route path={"/myList"} exact={true} element={<MyList />} />
             <Route path={"/myOrders"} exact={true} element={<MyOrders />} />
+            <Route path={"/myAddress"} exact={true} element={<Address />} />
           </Routes>
           <FooterBanner />
           <Footer />
