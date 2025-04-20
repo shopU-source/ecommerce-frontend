@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function postData(url, formData) {
-  const response = await fetch(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, {
+  const response = await fetch(import.meta.env.VITE_RAILWAY_BACKEND + url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
