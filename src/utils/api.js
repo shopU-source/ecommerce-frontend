@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function postData(url, formData) {
-  const response = await fetch(import.meta.env.VITE_APP_URL + url, {
+  const response = await fetch(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -25,7 +25,7 @@ export async function fetchDataFromApi(url) {
       "Content-Type": "application/json",
     },
   };
-  const { data } = await axios.get(import.meta.env.VITE_APP_URL + url, params);
+  const { data } = await axios.get(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, params);
   return data;
 }
 
@@ -39,7 +39,7 @@ export async function uploadImage(url, updatedData) {
 
   var response;
   await axios
-    .put(import.meta.env.VITE_APP_URL + url, updatedData, params)
+    .put(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, updatedData, params)
     .then((res) => {
       console.log(res);
       response = res;
@@ -57,7 +57,7 @@ export async function editData(url, updatedData) {
 
   var response;
   await axios
-    .put(import.meta.env.VITE_APP_URL + url, updatedData, params)
+    .put(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, updatedData, params)
     .then((res) => {
       response = res;
     });
@@ -73,6 +73,6 @@ export async function deleteData(url) {
     }
   }
 
-  const { res } = await axios.delete(import.meta.env.VITE_APP_URL + url, params)
+  const { res } = await axios.delete(import.meta.env.VITE_APP_URL || import.meta.env.VITE_RAILWAY_BACKEND + url, params)
   return res;
 }
