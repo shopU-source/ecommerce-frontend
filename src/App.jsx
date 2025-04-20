@@ -102,7 +102,7 @@ function App() {
     <>
       <BrowserRouter>
         <MyContext.Provider value={values}>
-          {/* <Header /> */}
+          <Header />
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route
