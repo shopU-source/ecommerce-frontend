@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function postData(url, formData) {
-  const response = await fetch(import.meta.env.VITE_RAILWAY_BACKEND + url, {
+  const response = await fetch("https://ecommerce-backend-production-17d2.up.railway.app" + url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
