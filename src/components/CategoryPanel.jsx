@@ -1,15 +1,14 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { IoClose } from "react-icons/io5";
-import PropTypes from "prop-types";
 
 import "./categoryPanel.css";
 
 import CategoryCollapse from "./CategoryCollapse";
 
-function CategoryPanel({ isOpenCategoryPanel, setIsOpenCategoryPanel }) {
+function CategoryPanel(props) {
   const toggleDrawer = (newOpen) => () => {
-    setIsOpenCategoryPanel(newOpen);
+    props.setIsOpenCategoryPanel(newOpen);
   };
 
   const DrawerList = (
@@ -21,22 +20,17 @@ function CategoryPanel({ isOpenCategoryPanel, setIsOpenCategoryPanel }) {
           className="cursor-pointer text-[20px]"
         />
       </h2>
-
-      <CategoryCollapse />
+      {props?.data?.length !== 0 && <CategoryCollapse data={props.data} />}
     </Box>
   );
 
   return (
     <div>
-      <Drawer open={isOpenCategoryPanel} onClose={toggleDrawer(false)}>
+      <Drawer open={props.isOpenCategoryPanel} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </div>
   );
 }
-CategoryPanel.propTypes = {
-  isOpenCategoryPanel: PropTypes.bool.isRequired,
-  setIsOpenCategoryPanel: PropTypes.func.isRequired,
-};
 
 export default CategoryPanel;

@@ -4,7 +4,7 @@ import { FaRegMinusSquare } from "react-icons/fa";
 import { Button } from "@mui/material";
 import { FaRegPlusSquare } from "react-icons/fa";
 
-function CategoryCollapse() {
+function CategoryCollapse(props) {
   const [subMenuIndex, setSubMenuIndex] = useState(null);
   const [innerSubMenuIndex, setInnerSubMenuIndex] = useState(null);
 
@@ -28,151 +28,79 @@ function CategoryCollapse() {
     <>
       <div className="scroll">
         <ul className="w-full">
-          <li className="list-none">
-            <Link>
-              <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)] hover:!text-[#287c2c] transition !font-semibold">
-                Medicine
-                {subMenuIndex === 0 ? (
-                  <FaRegMinusSquare
-                    className="ml-auto cursor-pointer"
-                    onClick={() => openSubMenu(0)}
-                  />
-                ) : (
-                  <FaRegPlusSquare
-                    className="ml-auto cursor-pointer"
-                    onClick={() => openSubMenu(0)}
-                  />
-                )}
-              </Button>
-            </Link>
-            {subMenuIndex === 0 && (
-              <ul className="subMenu w-full pl-4">
-                <li className="list-none relative">
+          {props?.data?.length !== 0 &&
+            props?.data?.map((category, index) => {
+              return (
+                <li className="list-none" key={index}>
                   <Link>
-                    <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition !font-semibold">
-                      Health{" "}
-                      {innerSubMenuIndex === 0 ? (
+                    <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)] hover:!text-[#287c2c] transition !font-semibold">
+                      {category?.name}
+                      {subMenuIndex === index ? (
                         <FaRegMinusSquare
                           className="ml-auto cursor-pointer"
-                          onClick={() => openInnerSubMenu(0)}
+                          onClick={() => openSubMenu(index)}
                         />
                       ) : (
                         <FaRegPlusSquare
                           className="ml-auto cursor-pointer"
-                          onClick={() => openInnerSubMenu(0)}
+                          onClick={() => openSubMenu(index)}
                         />
                       )}
                     </Button>
                   </Link>
-                  {innerSubMenuIndex === 0 && (
-                    <ul className="innerSubMenu w-full pl-4">
-                      <li className="list-none relative">
-                        <Link to={"/medicine/health/drinks"}>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Drinks
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link to={"/"}>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Proteins
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link to={"/"}>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Vitamins
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link to={"/"}>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Tablets
-                          </Button>
-                        </Link>
-                      </li>
+                  {subMenuIndex === index && (
+                    <ul className="subMenu w-full pl-4">
+                      {category?.children?.length !== 0 &&
+                        category?.children?.map((subCategory, index_) => {
+                          return (
+                            <li className="list-none relative" key={index_}>
+                              <Link>
+                                <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition !font-semibold">
+                                  {subCategory?.name}
+                                  {innerSubMenuIndex === index_ ? (
+                                    <FaRegMinusSquare
+                                      className="ml-auto cursor-pointer"
+                                      onClick={() => openInnerSubMenu(index_)}
+                                    />
+                                  ) : (
+                                    <FaRegPlusSquare
+                                      className="ml-auto cursor-pointer"
+                                      onClick={() => openInnerSubMenu(index_)}
+                                    />
+                                  )}
+                                </Button>
+                              </Link>
+                              {innerSubMenuIndex === index_ && (
+                                <ul className="innerSubMenu w-full pl-4">
+                                  {subCategory?.children?.length !== 0 &&
+                                    subCategory?.children?.map(
+                                      (thirdLevelCategory, index__) => {
+                                        return (
+                                          <li
+                                            className="list-none relative"
+                                            key={index__}
+                                          >
+                                            <Link
+                                              to={"/medicine/health/drinks"}
+                                            >
+                                              <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
+                                                {thirdLevelCategory?.name}
+                                              </Button>
+                                            </Link>
+                                          </li>
+                                        );
+                                      }
+                                    )}
+                                </ul>
+                              )}
+                            </li>
+                          );
+                        })}
                     </ul>
                   )}
                 </li>
-              </ul>
-            )}
-          </li>
-
-          <li className="list-none">
-            <Link>
-              <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)] hover:!text-[#287c2c] transition !font-semibold">
-                Medicine
-                {subMenuIndex === 1 ? (
-                  <FaRegMinusSquare
-                    className="ml-auto cursor-pointer"
-                    onClick={() => openSubMenu(1)}
-                  />
-                ) : (
-                  <FaRegPlusSquare
-                    className="ml-auto cursor-pointer"
-                    onClick={() => openSubMenu(1)}
-                  />
-                )}
-              </Button>
-            </Link>
-            {subMenuIndex === 1 && (
-              <ul className="subMenu w-full pl-4">
-                <li className="list-none relative">
-                  <Link to={"/medicine/health"}>
-                    <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition !font-semibold">
-                      Health{" "}
-                      {innerSubMenuIndex === 1 ? (
-                        <FaRegMinusSquare
-                          className="ml-auto cursor-pointer"
-                          onClick={() => openInnerSubMenu(1)}
-                        />
-                      ) : (
-                        <FaRegPlusSquare
-                          className="ml-auto cursor-pointer"
-                          onClick={() => openInnerSubMenu(1)}
-                        />
-                      )}
-                    </Button>
-                  </Link>
-                  {innerSubMenuIndex === 1 && (
-                    <ul className="innerSubMenu w-full pl-4">
-                      <li className="list-none relative">
-                        <Link>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Drinks
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Proteins
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Vitamins
-                          </Button>
-                        </Link>
-                      </li>
-                      <li className="list-none relative">
-                        <Link>
-                          <Button className="w-full !text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]  hover:!text-[#287c2c] transition">
-                            Tablets
-                          </Button>
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              </ul>
-            )}
-          </li>
+              );
+            })}
         </ul>
       </div>
     </>

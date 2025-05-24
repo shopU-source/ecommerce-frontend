@@ -4,15 +4,31 @@ import { FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoRocketOutline } from "react-icons/io5";
 import CategoryPanel from "./CategoryPanel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchDataFromApi } from "../utils/api";
 import "./navBar.css";
 
 function Navigation() {
   const [isOpenCategoryPanel, setIsOpenCategoryPanel] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
 
   const openCategoryPanel = () => {
     setIsOpenCategoryPanel(true);
   };
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      fetchDataFromApi("/api/category").then((res) => {
+        if (res?.error === false) {
+          setCategoryData(res?.data);
+        }
+      });
+    }
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <div className="border-b-[2px]">
@@ -35,341 +51,68 @@ function Navigation() {
                   to={"/"}
                   className="link transition text-[14px] font-[500]"
                 >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
+                  <Button className="link transition !font-[500] !text-[rgba(0,0,0,0.8)] hover:!text-[#287c2c]">
                     Home
                   </Button>
                 </Link>
               </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/medicine"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Medicine
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/grocery"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Grocery
-                  </Button>
-                </Link>
-
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/electronics"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Electronics
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/fashion"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Fashion
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/beauty"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Beauty
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/wellness"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Wellness
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="list-none relative">
-                <Link
-                  to={"/jewellery"}
-                  className="link transition text-[14px] font-[500]"
-                >
-                  <Button className="link transition !font-[500] !text-[rgba(0, 0, 0, 0.8)] hover:!text-[#287c2c]">
-                    Jewellery
-                  </Button>
-                </Link>
-                <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="submenu-item">
-                    <Link to={"/"} className="w-full">
-                      <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
-                        Dairy
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </li>
+              {categoryData?.length !== 0 &&
+                categoryData?.map((category, index) => {
+                  return (
+                    <li className="list-none relative" key={index}>
+                      <Link
+                        to={`/${category.name}`}
+                        className="link transition text-[14px] font-[500]"
+                      >
+                        <Button className="link transition !font-[500] !text-[rgba(0,0,0,0.8)] hover:!text-[#287c2c]">
+                          {category?.name}
+                        </Button>
+                      </Link>
+                      {category?.children?.length !== 0 && (
+                        <div className="submenu absolute top-[100%] left-[0%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
+                          <ul>
+                            {category?.children?.map((subCategory, index_) => {
+                              return (
+                                <div className="submenu-item" key={index_}>
+                                  <Link to={"/"} className="w-full">
+                                    <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start">
+                                      {subCategory?.name}
+                                    </Button>
+                                    {subCategory?.children?.length !== 0 && (
+                                      <div className="submenu absolute top-[0%] left-[100%] min-w-[150px] bg-white shadow-md opacity-0 transition-all">
+                                        <ul>
+                                          {subCategory?.children?.map(
+                                            (thirdLevelCategory, index__) => {
+                                              return (
+                                                <li
+                                                  className="list-none w-full"
+                                                  key={index__}
+                                                >
+                                                  <Link
+                                                    to={"/product"}
+                                                    className="w-full"
+                                                  >
+                                                    <Button className="!text-[rgba(0,0,0,0.8)] w-full !text-left !justify-start !rounded-none">
+                                                      {thirdLevelCategory?.name}
+                                                    </Button>
+                                                  </Link>
+                                                </li>
+                                              );
+                                            }
+                                          )}
+                                        </ul>
+                                      </div>
+                                    )}
+                                  </Link>
+                                </div>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className="col3 w-[15%]">
@@ -380,10 +123,13 @@ function Navigation() {
           </div>
         </div>
       </nav>
-      <CategoryPanel
-        isOpenCategoryPanel={isOpenCategoryPanel}
-        setIsOpenCategoryPanel={setIsOpenCategoryPanel}
-      />
+      {categoryData?.length !== 0 && (
+        <CategoryPanel
+          isOpenCategoryPanel={isOpenCategoryPanel}
+          setIsOpenCategoryPanel={setIsOpenCategoryPanel}
+          data={categoryData}
+        />
+      )}
     </div>
   );
 }
